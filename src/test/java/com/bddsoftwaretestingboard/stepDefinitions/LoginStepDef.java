@@ -38,4 +38,26 @@ public class LoginStepDef {
     public void userIsRedirectedToHomePage() {
         loginPage.confirmLogin();
     }
+
+    @When("User enters invalid credentials")
+    public void userEntersInvalidCredentials() {
+        loginPage.enterUsername("invalid@yahoo.com");
+        loginPage.enterPassword("Invalid@123");
+    }
+    @Then("User should see an error message indicating invalid credentials")
+    public void userShouldSeeErrorMessageModal() {
+        loginPage.confirmInvalidLogin();
+    }
+
+    @Then("User leaves the username and password fields empty")
+    public void userLeavesUsernameAndPasswordFieldEmpty() {
+        loginPage.enterUsername("");
+        loginPage.enterPassword("");
+    }
+
+    @Then("User should see an error message indicating that fields cannot be empty")
+    public void userShouldSeeErrorMessage() {
+        loginPage.confirmEmptyFields();
+    }
+
 }
